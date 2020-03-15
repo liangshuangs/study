@@ -138,5 +138,3 @@ Promise.deferred = function () {
 module.exports = Promise;
 // npm install promises-aplus-tests -g
 // promises-aplus-tests promise.js
-
-
