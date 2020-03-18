@@ -7,4 +7,7 @@ let p = new Promise((resolve,reject)=>{
 
 p.then().then().then().then(null,function (err) {
     console.log(err);
-})
+});
+
+// promise all race catch finally promisify
+

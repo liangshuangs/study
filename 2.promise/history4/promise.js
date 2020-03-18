@@ -51,6 +51,9 @@ class Promise {
         this.onResolvedCallbacks = []; // 存放成功时的回调
         this.onRejectedCallbacks = []; // 存放失败时的回调
         let resolve = (value) => {
+            if(value instanceof Promise){ // 直到解析出一个普通值来
+                return value.then(resolve,reject)
+            }
             if (this.status === PENDING) {
                 this.status = FULFILLED
                 this.value = value
@@ -125,8 +128,12 @@ class Promise {
 
         return promise2;
     }
-}
 
+    catch(errCallback){ // 就是一个没有成功的then
+        return this.then(null,errCallback)
+    }
+}
+// 静态方法 类上的方法
 Promise.deferred = function () {
     let dfd = {};
     dfd.promise = new Promise((resolve,reject)=>{
@@ -136,7 +143,5 @@ Promise.deferred = function () {
     return dfd;
 }
 module.exports = Promise;
-// npm install promises-aplus-tests -g
+// sudo npm install promises-aplus-tests -g
 // promises-aplus-tests promise.js
-
-
