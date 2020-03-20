@@ -1,30 +1,33 @@
 // 题1:
 console.log('script start');
 
-setTimeout(function() {
-  console.log('setTimeout');
+setTimeout(function () {
+    console.log('setTimeout');
 }, 0);
 
-Promise.resolve().then(function() {
-  console.log('promise1');
-}).then(function() {
-  console.log('promise2');
+Promise.resolve().then(function () {
+    console.log('promise1');
+}).then(function () {
+    console.log('promise2');
 });
 
 console.log('script end')
-//  题2：
-<a id="link" href="http://www.zhufengpeixun.cn">link</a>
-<script>
+    //  题2：
+    <
+    a id = "link"
+href = "http://www.zhufengpeixun.cn" > link < /a> <
+    script >
     let link = document.getElementById('link');
-    const nextTick = new Promise(resolve => {
-        link.addEventListener('click', resolve);
-    });
-    nextTick.then(event => {
-        event.preventDefault();
-        console.log('event.preventDefault()');
-    });
-    //link.click(); 
-</script>
+const nextTick = new Promise(resolve => {
+    link.addEventListener('click', resolve);
+});
+nextTick.then(event => {
+    event.preventDefault();
+    console.log('event.preventDefault()');
+});
+//link.click(); 
+<
+/script>
 
 // 题3:
 async function async1() {
