@@ -1,0 +1,29 @@
+{
+  "name": "zhufeng-node-lesson",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "zf": "./bin/www"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "bootstrap": "^3.4.1",
+    "jquery": "^2.2.0"
+  },
+  "peerDependencies": {
+    "jquery": "2.2.0"
+  },
+  "bundledDependencies": [
+    "jquery"
+  ],
+  "optionalDependencies": {
+    "webpack": "^4.0.0"
+  }
+}

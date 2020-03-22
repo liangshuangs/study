@@ -7,9 +7,6 @@
         "type": "node",
         "request": "launch",
         "name": "Launch Program",
-        "skipFiles": [
-            "<node_internals>/**"
-        ],
-        "program": "${workspaceFolder}\\4.node-core\\global.js "
+        "program": "${workspaceFolder}\\5.module\\useA.js"
     }]
 }
