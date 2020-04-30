@@ -1,36 +1,35 @@
 // 三种buffer的声明方式 内存 大小是不能发生变化的
-// buffer 可以通过数字 通过字符串来声明 可以通过数组来声明
+// buffer可以通过数字 字符串 数组 声明
 
 let buffer = Buffer.alloc(10);
-let buffer1 = Buffer.from('珠峰'); // utf8格式
+let buffer1 = Buffer.from('珠');
 let buffer2 = Buffer.from([0xe7, 0x8f, 0xa0]);
 console.log(buffer, buffer1, buffer2);
+//  buffer转string
+console.log(buffer2.toString());
+console.log(buffer2.toString('base64'));
 
-// Buffer 可以和字符串任意的转化
-console.log(buffer1.toString('base64')); // 6 8 大了3分之一
-// 怎么转化base64 可以放到任何的url的地方 src上
-// 不能转化大图片
-
-// 编码的操作 汉字 1个汉字3个字节 24位（3*8）  (4*6格式)
-
-let code = Buffer.from('珠');
-console.log(0xe7.toString(2)); // e7 8f a0
+// base64转码原理
+// 一个汉字是3个字节  一个字节是8位  即 3 * 8 （24） 转base64 就是 变成 4 * 6
+// 比如 珠 的buffer是  e7 8f a0 二进制是 11100111 10001111 10100000
+// 变成是 4 * 6 就是  111001 111000 111110  100000
+// 不够8位这高位补0   00111001 00111000 00111110  00100000
+console.log(0xe7.toString(2));
 console.log(0x8f.toString(2));
 console.log(0xa0.toString(2));
-// 0x16jinz
-// 00111001   00111000   00111110   00100000
-// 00111111 // 取值范围是0-63  base64
 
-// 规范表 取值表
-
-let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-str += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.toLowerCase();
-str += '0123456789+/';
+// 00111001 00111000 00111110  00100000 转为二进制是 57 56 62 32
 
 console.log(parseInt('00111001', 2))
 console.log(parseInt('00111000', 2))
 console.log(parseInt('00111110', 2))
 console.log(parseInt('00100000', 2))
-console.log(str[57] + str[56] + str[62] + str[32]);
+
+// base64的规范表
+let str = 'ABCDEFGHIGKLNMOPQRSTUVWXYZ';
+str += str.toLocaleLowerCase();
+str += '0123456789+/';
+let base64Code = str[57] + str[56] + str[62] + str[32];
+console.log(base64Code);
 
 // 前端的二进制

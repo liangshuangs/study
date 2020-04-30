@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>script</title>
+</head>
+<body>
+    <input type="file" id="file">
+</body>
+<script>
+    // 前端二进制 下载  操作exel
+    // 前端最常用的就是blob
+    // file也是blob
+    let str = `<h1>hello world</h1>`;
+    str = new Blob([str],{type: 'text/html'});
+    let a = document.createElement('a');
+    a.setAttribute('download','a.html');
+    a.innerHTML = '下载';
+    a.href = URL.createObjectURL(str);
+    document.body.appendChild(a);
+
+    // 如何读取blob的内容  FileReader API
+    let fileReader = new FileReader();
+    fileReader.onload = function() {
+        console.log(fileReader.result);
+    }
+    // fileReader.readAsDataURL(blob); // 可以产生一个路径是转为base64 
+    // URL.createObjectURL(blob) // 也能转为一个路径  同步
+
+    // 实现一个预览功能
+    file.addEventListener('change', (e) => {
+        let file = e.target.files[0];
+        let url = URL.createObjectURL(file);
+        let img = document.createElement('img');
+        img.src = url;
+        document.body.appendChild(img);
+        console.log(file)
+    })
+</script>
+</html>
